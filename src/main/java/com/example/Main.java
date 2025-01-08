@@ -14,19 +14,24 @@ public class Main {
     private static boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
     
     public static void main(String[] args) throws Exception {
-        File Location = new File("Your mplab_ipe location");
+        File Location = new File("D:\\mplab\\mplab_platform\\mplab_ipe");
 
-        String PicKitSerialNumber = searchPicKit(Location, ".\\ipecmd.exe -T");
+        ArrayList<String> PicKitSerialNumber = searchPicKit(Location, ".\\ipecmd.exe -T");
 
-        String command = ".\\ipecmd.exe -TS" + PicKitSerialNumber + " -CI to be recorder -M -F" + Location + "Your .hex file";
-
-        programIC(Location, command);
+        for(int i = 0; i < PicKitSerialNumber.size(); i++){
+            if (PicKitSerialNumber.get(i) != "") {
+                String command = ".\\ipecmd.exe -TS" + PicKitSerialNumber.get(i) + " -P32MM0064GPL036 -M -F" + Location + "\\DSE_830i_v1.1.0.hex";
+                System.out.println("Comando: " + command);
+                programIC(Location, command);
+            }
+        }
     }
 
     
 
-    public static String searchPicKit(File whereToRun, String command) throws Exception {
-        String PicKitSerialNumber = "";
+    public static ArrayList<String> searchPicKit(File whereToRun, String command) throws Exception {
+        ArrayList<String> PicKitSerialNumber = new ArrayList<>();
+        
         ArrayList<String> result = new ArrayList<>();
         ProcessBuilder builder = new ProcessBuilder();
 
@@ -50,9 +55,29 @@ public class Main {
             }
         }
 
-        if (result.size() == 3) {
-            int posSubString = result.get(2).indexOf(":");
-            PicKitSerialNumber = result.get(2).substring(posSubString + 2);
+        // if (result.size() == 3) {
+        //     int posSubString = result.get(2).indexOf(":");
+        //     PicKitSerialNumber = result.get(2).substring(posSubString + 2);
+        // }
+        int posSubString = 0;
+        switch (result.size()) {
+            case 3:
+                posSubString = result.get(2).indexOf(":");
+                PicKitSerialNumber.add(result.get(2).substring(posSubString + 2));
+                PicKitSerialNumber.add("");
+                PicKitSerialNumber.add("");
+                PicKitSerialNumber.add("");
+                break;
+            case 4:
+                posSubString = result.get(2).indexOf(":");
+                PicKitSerialNumber.add(result.get(2).substring(posSubString + 2));
+                posSubString = result.get(3).indexOf(":");
+                PicKitSerialNumber.add(result.get(3).substring(posSubString + 2));
+                PicKitSerialNumber.add("");
+                PicKitSerialNumber.add("");
+                break;
+            default:
+                break;
         }
 
         boolean isFinished = process.waitFor(30, TimeUnit.SECONDS);
