@@ -16,8 +16,8 @@ To run this code, ensure you have the following prerequisites:
 - **MPLAB X IDE** (optional but recommended for easier integration)
 - **MPLAB IPE** (Integrated Programming Environment) for standalone programming
 - Java libraries for interfacing with the PICKIT 4/5 and programming the ICs
-- "Your mplab_ipe location" it's something like D:\\mplab\\mplab_platform\\mplab_ipe
-- "Your .hex file" it's something like myHexFile.hex
+- "Your mplab_ipe location" is something like D:\\mplab\\mplab_platform\\mplab_ipe
+- "Your .hex file" is something like myHexFile.hex
 
 ## Acknowledgments
 
