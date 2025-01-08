@@ -10,12 +10,14 @@ This repository contains sample Java code to read the serial number of a PICKIT 
 
 To run this code, ensure you have the following prerequisites:
 
-- **PICKIT 4 or 5 Programmer**.
-- **Microchip ICs** (compatible ICs for programming).
-- **Java Development Kit (JDK)** version 8 or higher.
-- **MPLAB X IDE** (optional but recommended for easier integration).
-- **MPLAB IPE** (Integrated Programming Environment) for standalone programming.
-- Java libraries for interfacing with the PICKIT 4/5 and programming the ICs.
+- **PICKIT 4 or 5 Programmer**
+- **Microchip ICs** (compatible ICs for programming)
+- **Java Development Kit (JDK)** version 8 or higher
+- **MPLAB X IDE** (optional but recommended for easier integration)
+- **MPLAB IPE** (Integrated Programming Environment) for standalone programming
+- Java libraries for interfacing with the PICKIT 4/5 and programming the ICs
+- "Your mplab_ipe location" it's something like D:\\mplab\\mplab_platform\\mplab_ipe
+- "Your .hex file" it's something like myHexFile.hex
 
 ## Acknowledgments
 
